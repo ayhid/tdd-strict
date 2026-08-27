@@ -17,8 +17,8 @@
     "name": "Ayoub Hidri",
     "url": "https://github.com/ayhid"
   },
-  "homepage": "https://github.com/ayhid/gsd-cap-tdd-strict",
-  "repository": "https://github.com/ayhid/gsd-cap-tdd-strict",
+  "homepage": "https://github.com/ayhid/tdd-strict",
+  "repository": "https://github.com/ayhid/tdd-strict",
   "license": "MIT",
   "keywords": ["gsd", "tdd", "test-driven-development", "gate", "enforcement"],
   "skills": [],

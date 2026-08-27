@@ -1,4 +1,4 @@
-# gsd-cap-tdd-strict
+# tdd-strict
 
 A blocking TDD gate for [GSD Core](https://github.com/open-gsd/gsd-core).
 
@@ -33,11 +33,18 @@ It also does not judge test *quality*. A `test(...)` commit containing `expect(t
 ## Install
 
 ```bash
-gsd capability install https://github.com/ayhid/gsd-cap-tdd-strict.git#v0.1.0 --scope project
+gsd capability install https://github.com/ayhid/tdd-strict.git#v0.1.0 --scope project
 gsd capability state --raw
 ```
 
-Installing from the git URL above is unaffected by the folder name. If you clone this repo instead, you get a directory named `gsd-cap-tdd-strict`, which must be renamed to `tdd-strict` (the manifest `id`) before `capability install <local-path>` will accept it.
+To install from a local checkout instead, clone the repo and point at it directly:
+
+```bash
+git clone https://github.com/ayhid/tdd-strict.git
+gsd capability install ./tdd-strict --scope project
+```
+
+The repo name matches the manifest `id`, so a plain clone already produces the `tdd-strict` directory that `capability install <local-path>` requires. If you clone into a different directory name, rename it back to `tdd-strict` first. Installing from the git URL is unaffected either way.
 
 Requires the first-party `tdd` capability, so turn that on too:
 
