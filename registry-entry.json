@@ -7,13 +7,13 @@
   "author": "Ayoub Hidri <ayoub.hidri@gmail.com>",
   "license": "MIT",
   "enginesGsd": ">=1.6.0",
-  "install": "gsd capability install https://github.com/ayhid/tdd-strict.git#v0.1.0",
+  "install": "gsd capability install https://github.com/ayhid/tdd-strict.git#v0.1.1",
   "uninstall": "gsd capability remove tdd-strict",
   "interactions": {
     "loopExtensionPoints": ["execute:post"],
     "hookKinds": ["gate"],
     "configKeys": ["tdd-strict.enabled"],
-    "requires": ["tdd"],
+    "requires": [],
     "runtimeCompat": ["all"],
     "produces": [],
     "consumes": ["PLAN.md"]

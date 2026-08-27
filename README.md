@@ -48,7 +48,7 @@ Commit shape is what a deterministic check can see; whether the test was meaning
 ## Install
 
 ```bash
-gsd capability install https://github.com/ayhid/tdd-strict.git#v0.1.0 --scope project
+gsd capability install https://github.com/ayhid/tdd-strict.git#v0.1.1 --scope project
 gsd capability state --raw
 ```
 
@@ -62,11 +62,27 @@ gsd capability install ./tdd-strict --scope project
 > [!NOTE]
 > The repo name matches the manifest `id`, so a plain clone already produces the `tdd-strict` directory `capability install <local-path>` requires. Clone into a different name and you must rename it back. Installing from the git URL is unaffected.
 
-Requires the first-party `tdd` capability, so turn that on too:
+Pairs with the first-party `tdd` capability, so turn that on too:
 
 ```bash
 gsd capability set tdd --gate workflow.tdd_mode=true
 ```
+
+> [!NOTE]
+> The manifest deliberately leaves `requires` empty rather than declaring `["tdd"]`.
+> GSD's install-time cross-capability check runs against a map holding only the
+> incoming capability (`capability-source.cjs`, `stageValidated`), while the loader
+> seeds the same check with the first-party set first. So through at least GSD
+> 1.11.0 *any* non-empty `requires` fails to install, with a misleading message:
+>
+> ```console
+> Error: capability install blocked: Cross-capability validation failed:
+> capability "tdd-strict" requires "tdd" which does not exist
+> ```
+>
+> Nothing here structurally needs `tdd` anyway — the gate reads plan frontmatter and
+> `git log`. With `tdd` off there are no `type: tdd` plans, so the gate passes
+> vacuously and the capability is inert rather than broken.
 
 Project scope puts the files in `.gsd/capabilities/tdd-strict/`; global scope uses `~/.gsd/capabilities/tdd-strict/`. The gate command resolves either.
 

@@ -1,6 +1,6 @@
 {
   "name": "gsd-cap-tdd-strict",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Blocking TDD gate for GSD Core: a phase cannot seal unless every type:tdd plan has a RED commit preceding its GREEN commit.",
   "license": "MIT",
   "author": "Ayoub Hidri",

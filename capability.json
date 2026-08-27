@@ -1,11 +1,11 @@
 {
   "id": "tdd-strict",
   "role": "feature",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Strict TDD enforcement",
   "description": "Turns GSD's advisory TDD gate into a blocking one. At execute:post, every type:tdd plan in the phase must carry a RED commit (test(<phase>-<plan>)) that is an ancestor of its GREEN commit (feat(<phase>-<plan>)); otherwise the phase does not seal. Enforcement honesty: a capability gate fires only at GSD loop extension points reached inside a GSD command. Code written outside a GSD command never crosses a loop point and is never seen by this capability — pair it with a tool-call-boundary guard for that.",
   "tier": "full",
-  "requires": ["tdd"],
+  "requires": [],
   "engines": {
     "gsd": ">=1.6.0"
   },
