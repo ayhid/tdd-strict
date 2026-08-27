@@ -1,0 +1,20 @@
+{
+  "name": "gsd-cap-tdd-strict",
+  "version": "0.1.0",
+  "description": "Blocking TDD gate for GSD Core: a phase cannot seal unless every type:tdd plan has a RED commit preceding its GREEN commit.",
+  "license": "MIT",
+  "author": "Ayoub Hidri",
+  "homepage": "https://github.com/ayhid/gsd-cap-tdd-strict",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayhid/gsd-cap-tdd-strict.git"
+  },
+  "keywords": ["gsd", "gsd-capability", "tdd", "test-driven-development"],
+  "files": ["capability.json", "checks/", "README.md", "LICENSE"],
+  "scripts": {
+    "test": "node --test test/tdd-gate.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

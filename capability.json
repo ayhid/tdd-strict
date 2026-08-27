@@ -1,0 +1,51 @@
+{
+  "id": "tdd-strict",
+  "role": "feature",
+  "version": "0.1.0",
+  "title": "Strict TDD enforcement",
+  "description": "Turns GSD's advisory TDD gate into a blocking one. At execute:post, every type:tdd plan in the phase must carry a RED commit (test(<phase>-<plan>)) that is an ancestor of its GREEN commit (feat(<phase>-<plan>)); otherwise the phase does not seal. Enforcement honesty: a capability gate fires only at GSD loop extension points reached inside a GSD command. Code written outside a GSD command never crosses a loop point and is never seen by this capability — pair it with a tool-call-boundary guard for that.",
+  "tier": "full",
+  "requires": ["tdd"],
+  "engines": {
+    "gsd": ">=1.6.0"
+  },
+  "runtimeCompat": {
+    "supported": ["*"],
+    "unsupported": []
+  },
+  "author": {
+    "name": "Ayoub Hidri",
+    "url": "https://github.com/ayhid"
+  },
+  "homepage": "https://github.com/ayhid/gsd-cap-tdd-strict",
+  "repository": "https://github.com/ayhid/gsd-cap-tdd-strict",
+  "license": "MIT",
+  "keywords": ["gsd", "tdd", "test-driven-development", "gate", "enforcement"],
+  "skills": [],
+  "agents": [],
+  "hooks": [],
+  "steps": [],
+  "contributions": [],
+  "config": {
+    "tdd-strict.enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Block phase completion when a type:tdd plan is missing its RED or GREEN gate commit, or when RED does not precede GREEN."
+    }
+  },
+  "gates": [
+    {
+      "point": "execute:post",
+      "check": {
+        "predicate": {
+          "kind": "command-exit-zero",
+          "command": "TDDS=\"$(ls .gsd/capabilities/tdd-strict/checks/tdd-gate.js 2>/dev/null || echo \"$HOME/.gsd/capabilities/tdd-strict/checks/tdd-gate.js\")\"; node \"$TDDS\" \"${PHASE_DIR}\" \"${PHASE_NUMBER}\"",
+          "timeout": 60
+        }
+      },
+      "when": "tdd-strict.enabled",
+      "blocking": true,
+      "onError": "halt"
+    }
+  ]
+}
