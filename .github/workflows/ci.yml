@@ -9,5 +9,6 @@ jobs:
         with:
           node-version: 22
       - name: Validate manifest
-        run: node -e "const m=require('./capability.json'); if(m.id!=='tdd-strict') throw new Error('id must equal folder name'); for (const f of ['role','version','title','description','tier','requires','runtimeCompat','skills','agents','hooks','steps','contributions','gates']) if (!(f in m)) throw new Error('missing required field: '+f); for (const g of m.gates) { if (typeof g.blocking!=='boolean') throw new Error('gate.blocking must be boolean'); if (!['skip','halt'].includes(g.onError)) throw new Error('gate.onError must be skip|halt'); }"
+        run: |
+          node -e "const m=require('./capability.json'); if(m.id!=='tdd-strict') throw new Error('id must equal folder name'); for (const f of ['role','version','title','description','tier','requires','runtimeCompat','skills','agents','hooks','steps','contributions','gates']) if (!(f in m)) throw new Error('missing required field: '+f); for (const g of m.gates) { if (typeof g.blocking!=='boolean') throw new Error('gate.blocking must be boolean'); if (!['skip','halt'].includes(g.onError)) throw new Error('gate.onError must be skip|halt'); }"
       - run: npm test
