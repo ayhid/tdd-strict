@@ -35,7 +35,15 @@ Expected per plan: test(<phase>-<plan>) committed and failing, then feat(<phase>
 > [!WARNING]
 > This gate fires only at GSD loop extension points reached inside a GSD command. Code an agent writes in a plain chat turn never crosses a loop point, so this capability never sees it. If you want enforcement at the tool-call boundary, pair this with a write-time guard such as [Probity](https://github.com/nizos/probity) — the two layers are complementary, not redundant.
 
-It also does not judge test *quality*. A `test(...)` commit containing `expect(true).toBe(true)` satisfies the gate. Commit shape is what a deterministic check can see; whether the test was meaningful is what the first-party advisory review checkpoint asks a human to look at.
+It also does not judge test *quality*. This clears the gate:
+
+```js
+test('charges the card', () => {
+  expect(true).toBe(true); // green, and worthless
+});
+```
+
+Commit shape is what a deterministic check can see; whether the test was meaningful is what the first-party advisory review checkpoint asks a human to look at.
 
 ## Install
 
